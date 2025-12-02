@@ -1,0 +1,9 @@
+order_id,user_id,product,price,status,order_date
+101,1,Mobile Phone,15000,completed,2023-03-01
+102,2,Laptop,55000,completed,2023-03-12
+103,1,Headphones,2000,failed,2023-03-15
+104,3,Keyboard,1500,completed,2023-02-11
+105,4,Monitor,12000,completed,2023-04-01
+106,2,Mouse,800,completed,2023-04-05
+107,5,Camera,25000,completed,2023-03-20
+108,3,Charger,600,failed,2023-03-18
