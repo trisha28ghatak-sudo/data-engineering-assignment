@@ -1,0 +1,29 @@
+-- Top 10 customers by revenue
+SELECT user_id, SUM(price) AS total_spent
+FROM fact_orders
+GROUP BY user_id
+ORDER BY total_spent DESC
+LIMIT 10;
+
+-- Monthly revenue trend for last 12 months
+SELECT order_month AS month, SUM(price) AS total_revenue
+FROM fact_orders
+WHERE order_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '12 months'
+GROUP BY order_month
+ORDER BY order_month;
+
+-- Cities with highest failed orders (assuming status = 'failed' means failed)
+SELECT u.city, COUNT(*) AS failed_count
+FROM fact_orders f
+JOIN dim_users u ON f.user_id = u.user_id
+WHERE f.status = 'failed'
+GROUP BY u.city
+ORDER BY failed_count DESC
+LIMIT 20;
+
+-- Retention: users with repeat purchases
+SELECT user_id, COUNT(*) AS order_count
+FROM fact_orders
+GROUP BY user_id
+HAVING COUNT(*) > 1
+ORDER BY order_count DESC;
